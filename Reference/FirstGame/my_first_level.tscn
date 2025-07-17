@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8av48t7jncsj"]
+
+[ext_resource type="PackedScene" uid="uid://vcqr7lusb6fh" path="res://Reference/FirstGame/square.tscn" id="1_qe7e0"]
+[ext_resource type="PackedScene" uid="uid://dge6gxdnuqytx" path="res://Reference/FirstGame/win_ui.tscn" id="2_t33p1"]
+
+[sub_resource type="Gradient" id="Gradient_qjqgh"]
+offsets = PackedFloat32Array(0.038961, 0.993506, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.935065, 0.935065, 0.935065, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ky8s0"]
+gradient = SubResource("Gradient_qjqgh")
+
+[sub_resource type="Gradient" id="Gradient_t33p1"]
+colors = PackedColorArray(0.508933, 0.00146712, 0.596755, 1, 0.509804, 0, 0.596078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k5smf"]
+gradient = SubResource("Gradient_t33p1")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qe7e0"]
+distance = -423.0
+
+[node name="MyFirstLevel" type="Node2D"]
+
+[node name="Square" parent="." instance=ExtResource("1_qe7e0")]
+position = Vector2(301, 263)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(541.5, 364)
+scale = Vector2(9.67188, 1)
+texture = SubResource("GradientTexture2D_ky8s0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+position = Vector2(541.5, 364)
+scale = Vector2(9.67188, 1)
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+
+[node name="Goal" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+position = Vector2(788, 259)
+texture = SubResource("GradientTexture2D_k5smf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Goal"]
+position = Vector2(788, 259)
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+
+[node name="Death Plane" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death Plane"]
+shape = SubResource("WorldBoundaryShape2D_qe7e0")
+
+[node name="Win UI" parent="." instance=ExtResource("2_t33p1")]
+
+[connection signal="body_entered" from="Goal" to="Square" method="_on_goal_body_entered"]
+[connection signal="body_entered" from="Death Plane" to="Square" method="_on_death_plane_body_entered"]
