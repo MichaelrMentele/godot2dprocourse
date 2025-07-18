@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bj8j8jbaydyt6"]
+[gd_scene load_steps=23 format=3 uid="uid://bj8j8jbaydyt6"]
 
 [ext_resource type="Script" uid="uid://mjf2qdqvtuig" path="res://Player/Scripts/player.gd" id="1_dkpta"]
 [ext_resource type="Texture2D" uid="uid://cobc17sivh6gu" path="res://Player/Sprites/Player-jump/player-jump2.png" id="2_lfmf2"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://c2yma0hw60g3e" path="res://Player/Scripts/state_machine.gd" id="16_b1ygp"]
 [ext_resource type="Script" uid="uid://b4te3eev1b4ov" path="res://Player/Scripts/idle_player_state.gd" id="17_o28un"]
 [ext_resource type="Script" uid="uid://dx6nkiyg1tvfh" path="res://Player/Scripts/running_player_state.gd" id="18_n471f"]
+[ext_resource type="Script" uid="uid://b8a4preo8r5jj" path="res://Player/Scripts/fall_player_state.gd" id="19_n471f"]
+[ext_resource type="Script" uid="uid://cxdf8sogro4rq" path="res://Player/Scripts/jump_player_state.gd" id="19_o28un"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_755ss"]
 animations = [{
@@ -110,3 +112,15 @@ script = ExtResource("17_o28un")
 
 [node name="RunningPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("18_n471f")
+
+[node name="FallPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("19_n471f")
+
+[node name="JumpPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("19_o28un")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
