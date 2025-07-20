@@ -1,23 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://3h62h4gudsoa"]
+[gd_scene load_steps=3 format=3 uid="uid://3h62h4gudsoa"]
 
 [ext_resource type="PackedScene" uid="uid://bj8j8jbaydyt6" path="res://Player/player.tscn" id="1_uib4f"]
-[ext_resource type="Texture2D" uid="uid://b77jdaxrg3e71" path="res://Art/Textures/tileset.png" id="2_iqcmb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1yrn"]
-atlas = ExtResource("2_iqcmb")
-region = Rect2(16, 64, 64, 32)
+[ext_resource type="TileSet" uid="uid://dwwrwh1h8inq7" path="res://Art/Textures/Tileset/tile_set.tres" id="2_iqcmb"]
 
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uib4f")]
 position = Vector2(438, 97)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(436, 145)
-texture = SubResource("AtlasTexture_y1yrn")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(436, 145)
-polygon = PackedVector2Array(-32, -16, -32, 16, 32, 16, 32, -16)
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_iqcmb")
+format = 2
+layer_0/name = "Platforms"
+layer_0/z_index = -1
+layer_0/tile_data = PackedInt32Array(524317, 65536, 4, 589853, 65536, 5, 524318, 131072, 4, 589854, 131072, 5, 524319, 196608, 4, 589855, 196608, 5, 524320, 262144, 4, 589856, 262144, 5, 327715, 65536, 4, 393251, 65536, 5, 327716, 131072, 4, 393252, 131072, 5, 327717, 196608, 4, 393253, 196608, 5, 327718, 262144, 4, 393254, 262144, 5, 655378, 65536, 4, 720914, 65536, 5, 655379, 131072, 4, 720915, 131072, 5, 655380, 196608, 4, 720916, 196608, 5, 655381, 262144, 4, 720917, 262144, 5, 524313, 65536, 4, 589849, 65536, 5, 524314, 131072, 4, 589850, 131072, 5, 524315, 196608, 4, 589851, 196608, 5, 524316, 262144, 4, 589852, 262144, 5, 327709, 65536, 4, 393245, 65536, 5, 327710, 131072, 4, 393246, 131072, 5, 327711, 196608, 4, 393247, 196608, 5, 327712, 262144, 4, 393248, 262144, 5)
